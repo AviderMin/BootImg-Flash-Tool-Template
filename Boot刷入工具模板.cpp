@@ -12,21 +12,58 @@ string patchVer = "input";
 string toolAuth = "input";
 string buildDate = "input";
 string bootImg = "input";
+string apkFile = "input";
 string Group = "input";
+
+void MENU(); 
+void FLASH_OVER();
+void FLASH_FAILED();
+void FLASHING();
+void REBOOT_BOOTLOADER();
+void IN_SYSTEM();
+void FASTBOOT_MODE();
+void INSTALL_APK();
+void OTHERS(); 
+
+int main()
+{
+    system("color 3f");
+    system(("TITLE " + deviceName + "“ªº¸À¢»ÎBootπ§æﬂ --By " + toolAuth).c_str());
+    cout << endl;
+    cout << "     " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "           Recª˘±æ–≈œ¢" << endl;
+    cout << "      Boot√˚≥∆ £∫" << projectName << endl;
+    cout << "      Boot∞Ê±æ £∫" << bootVer << endl;
+    cout << "      Patch∞Ê±æ£∫" << patchVer << endl;
+    cout << "        ≈‰ª˙–Õ£∫" << deviceName << endl;
+    cout << "      π§æﬂ◊˜’ﬂ£∫" << toolAuth << endl;
+    cout << "      ±‡“Î ±º‰£∫" << buildDate << endl;
+    cout << "      À¢ª˙Ωª¡˜»∫£∫" << Group << endl;
+    cout << "***********************************************" << endl;
+    cout << "" << endl;
+    cout << "∞¥ªÿ≥µº¸ºÃ–¯..." << endl;
+    cin.get();
+    system("cls");
+    MENU();
+    system("pause");
+    return 0;
+}
 void FLASH_OVER()
 {
     system("cls");
-    cout << "  " << deviceName << " ‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑" << endl;
-    cout << "                                --By" << toolAuth << endl;
+    cout << "  " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
     cout << "***********************************************" << endl;
-    cout << "             Âà∑ÂÜôRecoveryÂÆåÊàê" << endl;
+    cout << "             À¢–¥BootÕÍ≥…" << endl;
     cout << endl;
-    cout << "            ÊâãÊú∫Â∞ÜÈáçÂêØËøõÂÖ•Á≥ªÁªü" << endl;
+    cout << "             ÷ª˙Ω´÷ÿ∆ÙΩ¯»ÎœµÕ≥" << endl;
     cout << endl;
-    cout << "           " << toolAuth << "ÊÑüË∞¢ÊÇ®‰ΩøÁî®Êú¨Â∑•ÂÖ∑" << endl;
+    cout << "           " << toolAuth << "∏––ªƒ˙ π”√±æπ§æﬂ" << endl;
     cout << "***********************************************" << endl;
     cout << endl;
-    cout << "           ÔºàÊåâ‰ªªÊÑèÈîÆÂÖ≥Èó≠Ê≠§Á™óÂè£Ôºâ" << endl;
+    cout << "           £®∞¥»Œ“‚º¸πÿ±’¥À¥∞ø⁄£©" << endl;
     cout << endl;
     system("fastboot reboot");
     cin.get();
@@ -35,19 +72,19 @@ void FLASH_OVER()
 void FLASH_FAILED()
 {
     system("cls");
-    cout << "  " << deviceName << " ‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑" << endl;
-    cout << "                                --By" << toolAuth << endl;
+    cout << "  " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
     cout << "***********************************************" << endl;
-    cout << "                   Âà∑ÂÖ•Â§±Ë¥•ÔºÅ" << endl;
+    cout << "                   À¢»Î ß∞‹£°" << endl;
     cout << endl;
-    cout << "           1.ËØ∑Ê£ÄÊü•ÊâãÊú∫ÂûãÂè∑ÊòØÂê¶Ê≠£Á°Æ" << endl;
-    cout << "           2.ËØ∑Á°ÆËÆ§fastbootÊòØÂê¶Ê≠£Â∏∏" << endl;
-    cout << "           3.Ëß£ÂéãÂêéÈáçÊñ∞ËøêË°åÊú¨Á®ãÂ∫èÔºå" << endl;
-    cout << "             Ëã•Ëøò‰∏çÊàêÂäüÔºåËØ∑ËÅîÁ≥ª‰ΩúËÄÖ" << endl;
+    cout << "           1.«ÎºÏ≤È ÷ª˙–Õ∫≈ «∑Ò’˝»∑" << endl;
+    cout << "           2.«Î»∑»œfastboot «∑Ò’˝≥£" << endl;
+    cout << "           3.Ω‚—π∫Û÷ÿ–¬‘À––±æ≥Ã–Ú£¨" << endl;
+    cout << "             »Ùªπ≤ª≥…π¶£¨«Î¡™œµ◊˜’ﬂ" << endl;
     cout << endl;
-    cout << "           " << toolAuth << "ÊÑüË∞¢ÊÇ®‰ΩøÁî®Êú¨Â∑•ÂÖ∑" << endl;
+    cout << "           " << toolAuth << "∏––ªƒ˙ π”√±æπ§æﬂ" << endl;
     cout << endl;
-    cout << "            ÔºàÊåâ‰ªªÊÑèÈîÆÈÄÄÂá∫Á®ãÂ∫èÔºâ" << endl;
+    cout << "            £®∞¥»Œ“‚º¸ÕÀ≥ˆ≥Ã–Ú£©" << endl;
     cout << "***********************************************" << endl;
     cin.get();
     return;
@@ -55,18 +92,18 @@ void FLASH_FAILED()
 void FLASHING()
 {
     system("cls");
-    cout << "  " << deviceName << " ‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑" << endl;
-    cout << "                                --By" << toolAuth << endl;
+    cout << "  " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
     cout << "***********************************************" << endl;
-    cout << "          Ê≠£Âú®ËøõË°åÂà∑ÂÖ•RecoveryÊìç‰Ωú" << endl
+    cout << "          ’˝‘⁄Ω¯––À¢»ÎBoot≤Ÿ◊˜" << endl
          << endl;
-    cout << "      ÔºàÂ¶ÇÊûúÈïøÊó∂Èó¥ÂÅúÁïôÂú®Ê≠§ÁïåÈù¢ÔºåËØ∑Ê£ÄÊü•ÔºöÔºâ" << endl;
+    cout << "      £®»Áπ˚≥§ ±º‰Õ£¡Ù‘⁄¥ÀΩÁ√Ê£¨«ÎºÏ≤È£∫£©" << endl;
     cout << endl;
-    cout << "      „Äê1.USBÁ∫øÊòØÂê¶Ê≠£Á°ÆËøûÊé•„Äë" << endl;
-    cout << "      „Äê2.ÁîµËÑëÈ©±Âä®ÊòØÂê¶Ê≠£Á°ÆÂÆâË£ÖÂπ∂ËØÜÂà´„Äë" << endl;
-    cout << "      „Äê3.ÊâãÊú∫ÊòØÂê¶ËøõÂÖ•fastbootÊ®°Âºè„Äë" << endl;
+    cout << "      °æ1.USBœﬂ «∑Ò’˝»∑¡¨Ω”°ø" << endl;
+    cout << "      °æ2.µÁƒ‘«˝∂Ø «∑Ò’˝»∑∞≤◊∞≤¢ ∂±°ø" << endl;
+    cout << "      °æ3. ÷ª˙ «∑ÒΩ¯»Îfastbootƒ£ Ω°ø" << endl;
     cout << endl;
-    cout << "             ÔºàÂπ∂ÈáçÂêØËØ•Â∑•ÂÖ∑Ôºâ" << endl;
+    cout << "             £®≤¢÷ÿ∆Ù∏√π§æﬂ£©" << endl;
     cout << "***********************************************" << endl;
     int result = system(("fastboot flash boot " + bootImg).c_str());
     if (result == 0)
@@ -84,10 +121,10 @@ void REBOOT_BOOTLOADER()
     cin.get();
     cout << "***********************************************" << endl;
     cout << endl;
-    cout << "             ÊâãÊú∫ÈáçÂêØ‰∏≠..." << endl;
+    cout << "              ÷ª˙÷ÿ∆Ù÷–..." << endl;
     cout << endl;
     cout << "***********************************************" << endl;
-    cout << "   ÔºàËã•ÈïøÊó∂Èó¥ÂÅúÁïôÂú®Ê≠§ÁïåÈù¢ÔºåËØ∑ÈáçÂêØËØ•Â∑•ÂÖ∑Ôºâ" << endl;
+    cout << "   £®»Ù≥§ ±º‰Õ£¡Ù‘⁄¥ÀΩÁ√Ê£¨«Î÷ÿ∆Ù∏√π§æﬂ£©" << endl;
     int result = system("adb reboot bootloader");
     if (result == 0)
     {
@@ -99,26 +136,26 @@ void IN_SYSTEM()
 {
     system("cls");
     cout << endl;
-    cout << "  " << deviceName << " ‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑" << endl;
-    cout << "                                --By" << toolAuth << endl;
+    cout << "  " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
     cout << "***********************************************" << endl;
-    cout << "          ËØ∑ÊÇ®Â∞ÜÊâãÊú∫Ê≠£Á°ÆËøûÊé•Âà∞ÁîµËÑëÔºö" << endl;
+    cout << "          «Îƒ˙Ω´ ÷ª˙’˝»∑¡¨Ω”µΩµÁƒ‘£∫" << endl;
     cout << endl;
-    cout << "            ËØ∑Á°Æ‰øùÔºö" << endl;
-    cout << "       „Äê1.ÊâãÊú∫bootloaderÊú™ÈîÅ„Äë" << endl;
-    cout << "       „Äê2.ÊâãÊú∫Â§Ñ‰∫éÂºÄÊú∫Áä∂ÊÄÅ„Äë" << endl;
-    cout << "       „Äê3.ÊâãÊú∫ÂºÄÂêØUSBË∞ÉËØï„Äë" << endl;
-    cout << "       „Äê4.ÁîµËÑë‰∏äÂ∑≤ÁªèÊ≠£Á°ÆÂÆâË£ÖÈ©±Âä®„Äë" << endl;
-    cout << "       „Äê5.ÊâãÊú∫ÊèêÁ§∫USBË∞ÉËØïÊéàÊùÉÊó∂ÂãæÈÄâÂßãÁªàÁÇπÂáªÊéàÊùÉ„Äë" << endl;
+    cout << "            «Î»∑±££∫" << endl;
+    cout << "       °æ1. ÷ª˙bootloaderŒ¥À¯°ø" << endl;
+    cout << "       °æ2. ÷ª˙¥¶”⁄ø™ª˙◊¥Ã¨°ø" << endl;
+    cout << "       °æ3. ÷ª˙ø™∆ÙUSBµ˜ ‘°ø" << endl;
+    cout << "       °æ4.µÁƒ‘…œ“—æ≠’˝»∑∞≤◊∞«˝∂Ø°ø" << endl;
+    cout << "       °æ5. ÷ª˙Ã· æUSBµ˜ ‘ ⁄»® ±π¥—° º÷’µ„ª˜ ⁄»®°ø" << endl;
     cout << endl;
     cout << "***********************************************" << endl;
     cin.get();
-    cout << "Ê≠£Âú®Ê£ÄÊü•ËÆæÂ§áÊòØÂê¶Ê≠£Â∏∏ËøûÊé•..." << endl;
+    cout << "’˝‘⁄ºÏ≤È…Ë±∏ «∑Ò’˝≥£¡¨Ω”..." << endl;
     cout << endl;
-    cout << "   ÔºàËã•ÈïøÊó∂Èó¥ÂÅúÁïôÂú®Ê≠§ÁïåÈù¢ÔºåËØ∑Ê£ÄÊü•‰∏äËø∞Âá†È°πÔºâ" << endl;
+    cout << "   £®»Ù≥§ ±º‰Õ£¡Ù‘⁄¥ÀΩÁ√Ê£¨«ÎºÏ≤È…œ ˆº∏œÓ£©" << endl;
     cout << "***********************************************" << endl;
     int result = system("adb devices");
-    cout << "Âá∫Áé∞ÊâãÊú∫Â∫èÂàóÂè∑ÂêéÔºåÊåâÂõûËΩ¶ÈîÆÈáçÂêØÂà∞BootloaderÊ®°Âºè..." << endl;
+    cout << "≥ˆœ÷ ÷ª˙–Ú¡–∫≈∫Û£¨∞¥ªÿ≥µº¸÷ÿ∆ÙµΩBootloaderƒ£ Ω..." << endl;
     if (result == 0)
     {
         REBOOT_BOOTLOADER();
@@ -132,17 +169,17 @@ void FASTBOOT_MODE()
 {
     system("cls");
     cout << endl;
-    cout << "  " << deviceName << " ‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑" << endl;
-    cout << "                                --By" << toolAuth << endl;
+    cout << "  " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
     cout << "***********************************************" << endl;
-    cout << "          ËØ∑ÊÇ®Â∞ÜÊâãÊú∫Ê≠£Á°ÆËøûÊé•Âà∞ÁîµËÑëÔºö" << endl;
+    cout << "          «Îƒ˙Ω´ ÷ª˙’˝»∑¡¨Ω”µΩµÁƒ‘£∫" << endl;
     cout << endl;
-    cout << "          ËØ∑Á°Æ‰øùÔºö" << endl;
-    cout << "        „Äê1.ÊâãÊú∫bootloaderÊú™ÈîÅ„Äë" << endl;
-    cout << "        „Äê2.ÊâãÊú∫Â§Ñ‰∫éfastbootÊ®°Âºè„Äë" << endl;
-    cout << "        „Äê3.ÁîµËÑë‰∏äÂ∑≤ÁªèÊ≠£Á°ÆÂÆâË£ÖÈ©±Âä®„Äë" << endl;
+    cout << "          «Î»∑±££∫" << endl;
+    cout << "        °æ1. ÷ª˙bootloaderŒ¥À¯°ø" << endl;
+    cout << "        °æ2. ÷ª˙¥¶”⁄fastbootƒ£ Ω°ø" << endl;
+    cout << "        °æ3.µÁƒ‘…œ“—æ≠’˝»∑∞≤◊∞«˝∂Ø°ø" << endl;
     cout << endl;
-    cout << "            ÔºàÊåâ‰∏ã‰ªªÊÑèÈîÆÁªßÁª≠Ôºâ" << endl;
+    cout << "            £®∞¥œ¬»Œ“‚º¸ºÃ–¯£©" << endl;
     cout << "***********************************************" << endl;
     cin.get();
     FLASHING();
@@ -151,28 +188,63 @@ void FASTBOOT_MODE()
 void OTHERS()
 {
     cout << endl;
-    cout << "  " << deviceName << " ‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑" << endl;
-    cout << "                                --By" << toolAuth << endl;
+    cout << "  " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
     cout << "***********************************************" << endl;
-    cout << "             ËØ∑ÂÖàÂ∞ÜÊâãÊú∫Â§Ñ‰∫é" << endl;
+    cout << "             «Îœ»Ω´ ÷ª˙¥¶”⁄" << endl;
     cout << endl;
-    cout << "               „ÄêÂºÄÊú∫Áä∂ÊÄÅ„Äë" << endl;
-    cout << "                  ÊàñËÄÖ" << endl;
-    cout << "             „ÄêfastbootÊ®°Âºè„Äë" << endl;
+    cout << "               °æø™ª˙◊¥Ã¨°ø" << endl;
+    cout << "                  ªÚ’ﬂ" << endl;
+    cout << "             °æfastbootƒ£ Ω°ø" << endl;
     cout << endl;
-    cout << "          (Êó†Êìç‰ΩúÂàô6ÁßíÂêéËá™Âä®ËøîÂõû)" << endl;
+    cout << "          (Œﬁ≤Ÿ◊˜‘Ú6√Î∫Û◊‘∂Ø∑µªÿ)" << endl;
     cout << "***********************************************" << endl;
 }
+void INSTALL_APK()
+{
+    system("cls");
+    cout << endl;
+    cout << "  " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "          «Îƒ˙Ω´ ÷ª˙’˝»∑¡¨Ω”µΩµÁƒ‘£∫" << endl;
+    cout << endl;
+    cout << "          «Î»∑±££∫" << endl;
+    cout << "        °æ1. ÷ª˙ø™∆Ù¡ÀUSBµ˜ ‘°ø" << endl;
+    cout << "        °æ2.µÁƒ‘“—∞≤◊∞ADB«˝∂Ø°ø" << endl;
+    cout << "        °æ3. ÷ª˙…œ“— ⁄»®¥ÀµÁƒ‘µƒµ˜ ‘»®œﬁ°ø" << endl;
+    cout << "          »Ù≥ˆœ÷ ⁄»®£¨«Î ÷∂Ø ⁄»®" << endl;
+    cout << endl;
+    cout << "            £®∞¥œ¬»Œ“‚º¸ºÃ–¯£©" << endl;
+    cout << "***********************************************" << endl;
+    cin.get();
+    int adbDevicesResult = system("adb devices");  
+    if (adbDevicesResult != 0) {  
+        std::cerr << "ADB…Ë±∏ºÏ≤È ß∞‹£¨«ÎºÏ≤È¡¨Ω”£°" << std::endl;  
+        return;  
+    }   
+    std::string installCommand = "adb install " + apkFile;  
+    int installResult = system(installCommand.c_str());  
+    if (installResult != 0) {  
+        std::cerr << "APK∞≤◊∞ ß∞‹£¨«ÎºÏ≤ÈŒƒº˛¬∑æ∂ªÚADB¡¨Ω”£°" << std::endl;  
+    } else {  
+        std::cout << "APK∞≤◊∞≥…π¶£°" << std::endl;  
+    }
+    this_thread::sleep_for(chrono::seconds(2));
+	system("cls");  
+    return MENU();  
+}  
 void MENU()
 {
     cout << endl;
-    cout << "  " << deviceName << " ‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑" << endl;
-    cout << "                                --By" << toolAuth << endl;
+    cout << "  " << deviceName << " “ªº¸À¢»ÎBootπ§æﬂ" << endl;
+    cout << "                                --By " << toolAuth << endl;
     cout << "***********************************************" << endl;
-    cout << "	ËØ∑ÈÄâÊã©ÊÇ®ÊâãÊú∫ÁöÑÂΩìÂâçÁä∂ÊÄÅÔºö" << endl;
-    cout << "	1. ÂºÄÊú∫Áä∂ÊÄÅ" << endl;
-    cout << "	2. fastbootÊ®°Âºè" << endl;
-    cout << "	3. ÂÖ∂‰ªñÁä∂ÊÄÅ" << endl;
+    cout << "	«Î—°‘Òπ¶ƒ‹£∫" << endl;
+    cout << "	1. ‘⁄ø™ª˙◊¥Ã¨œ¬À¢»Î" << endl;
+    cout << "	2. ‘⁄fastbootƒ£ Ωœ¬À¢»Î" << endl;
+    cout << "	3. ∞≤◊∞KernelSU”¶”√" << endl;
+    cout << "	4. ∆‰À˚◊¥Ã¨" << endl;
     cout << "***********************************************" << endl;
     int choice;
     do
@@ -181,18 +253,24 @@ void MENU()
         switch (choice)
         {
         case 1:
-            cout << "ÊÇ®ÈÄâÊã©‰∫ÜÂºÄÊú∫Áä∂ÊÄÅÔºåÁé∞Âú®ÊâßË°åÈáçÂêØËá≥BootloaderÊìç‰Ωú.." << endl;
+            cout << "ƒ˙—°‘Ò¡Àø™ª˙◊¥Ã¨£¨œ÷‘⁄÷¥––÷ÿ∆Ù÷¡Bootloader≤Ÿ◊˜.." << endl;
             this_thread::sleep_for(chrono::seconds(2));
             IN_SYSTEM();
             return;
         case 2:
-            cout << "ÊÇ®ÈÄâÊã©‰∫ÜfastbootÊ®°ÂºèÔºåÁé∞Âú®ÊâßË°åÂà∑ÂÖ•Êìç‰Ωú..." << endl;
+            cout << "ƒ˙—°‘Ò¡Àfastbootƒ£ Ω£¨œ÷‘⁄÷¥––À¢»Î≤Ÿ◊˜..." << endl;
             this_thread::sleep_for(chrono::seconds(2));
             system("cls");
             FASTBOOT_MODE();
             return;
         case 3:
-            cout << "ÊÇ®ÈÄâÊã©‰∫ÜÂÖ∂‰ªñÁä∂ÊÄÅÔºåËØ∑Â∞ÜÊâãÊú∫ÂàáÊç¢Âà∞ÂºÄÊú∫Áä∂ÊÄÅÊàñfastbootÊ®°Âºè„ÄÇ" << endl;
+            cout << "ƒ˙—°‘Ò¡À∞≤◊∞KernelSU”¶”√£¨œ÷‘⁄÷¥––∞≤◊∞≤Ÿ◊˜..." << endl;
+            this_thread::sleep_for(chrono::seconds(2));
+            system("cls");
+            INSTALL_APK(); 
+            return;
+        case 4:
+            cout << "ƒ˙—°‘Ò¡À∆‰À˚◊¥Ã¨£¨«ÎΩ´ ÷ª˙«–ªªµΩø™ª˙◊¥Ã¨ªÚfastbootƒ£ Ω°£" << endl;
             this_thread::sleep_for(chrono::seconds(1));
             system("cls");
             this_thread::sleep_for(chrono::seconds(1));
@@ -202,44 +280,20 @@ void MENU()
             MENU();
             return;
         default:
-            cout << "Êó†ÊïàÁöÑÈÄâÊã©ÔºåËØ∑ÈáçÊñ∞ÈÄâÊã©„ÄÇ" << endl;
+            cout << "Œﬁ–ßµƒ—°‘Ò£¨«Î÷ÿ–¬—°‘Ò°£" << endl;
             this_thread::sleep_for(chrono::seconds(1));
             system("cls");
             MENU();
             return;
         }
 
-        cout << "Êåâ‰ªªÊÑèÈîÆËøîÂõûËèúÂçï" << endl;
+        cout << "∞¥»Œ“‚º¸∑µªÿ≤Àµ•" << endl;
         cin.get();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << endl;
 
     } while (choice != 0);
-    cout << "ÊÑüË∞¢‰ΩøÁî®ÔºåÂÜçËßÅÔºÅ" << endl;
+    cout << "∏––ª π”√£¨‘Ÿº˚£°" << endl;
     cout << "******************************" << endl;
 }
-int main()
-{
-    system("color 3f");
-    system(("TITLE " + deviceName + "‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑ --By " + toolAuth).c_str());
-    cout << endl;
-    cout << "  " << deviceName << " ‰∏ÄÈîÆÂà∑ÂÖ•BootÂ∑•ÂÖ∑" << endl;
-    cout << "                                --By " << toolAuth << endl;
-    cout << "***********************************************" << endl;
-    cout << "           RecÂü∫Êú¨‰ø°ÊÅØ" << endl;
-    cout << "      BootÂêçÁß∞ Ôºö" << projectName << endl;
-    cout << "      BootÁâàÊú¨ Ôºö" << bootVer << endl;
-    cout << "      PatchÁâàÊú¨Ôºö" << patchVer << endl;
-    cout << "      ÈÄÇÈÖçÊú∫ÂûãÔºö" << deviceName << endl;
-    cout << "      Â∑•ÂÖ∑‰ΩúËÄÖÔºö" << toolAuth << endl;
-    cout << "      ÁºñËØëÊó∂Èó¥Ôºö" << buildDate << endl;
-    cout << "      Âà∑Êú∫‰∫§ÊµÅÁæ§Ôºö" << Group << endl;
-    cout << "***********************************************" << endl;
-    cout << "" << endl;
-    cout << "ÊåâÂõûËΩ¶ÈîÆÁªßÁª≠..." << endl;
-    cin.get();
-    system("cls");
-    MENU();
-    system("pause");
-    return 0;
-}
+
