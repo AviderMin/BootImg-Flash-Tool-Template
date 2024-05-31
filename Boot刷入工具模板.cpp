@@ -2,6 +2,7 @@
 #include <limits>
 #include <thread>
 #include <chrono>
+#include <sstream>
 
 using namespace std;
 int s;
@@ -24,6 +25,7 @@ void IN_SYSTEM();
 void FASTBOOT_MODE();
 void INSTALL_APK();
 void OTHERS(); 
+bool CheckADBDevices();
 
 int main()
 {
@@ -50,194 +52,11 @@ int main()
     system("pause");
     return 0;
 }
-void FLASH_OVER()
-{
-    system("cls");
-    cout << "  " << deviceName << " 一键刷入Boot工具" << endl;
-    cout << "                                --By " << toolAuth << endl;
-    cout << "***********************************************" << endl;
-    cout << "             刷写Boot完成" << endl;
-    cout << endl;
-    cout << "            手机将重启进入系统" << endl;
-    cout << endl;
-    cout << "           " << toolAuth << "感谢您使用本工具" << endl;
-    cout << "***********************************************" << endl;
-    cout << endl;
-    cout << "           （按任意键关闭此窗口）" << endl;
-    cout << endl;
-    system("fastboot reboot");
-    cin.get();
-    return;
-}
-void FLASH_FAILED()
-{
-    system("cls");
-    cout << "  " << deviceName << " 一键刷入Boot工具" << endl;
-    cout << "                                --By " << toolAuth << endl;
-    cout << "***********************************************" << endl;
-    cout << "                   刷入失败！" << endl;
-    cout << endl;
-    cout << "           1.请检查手机型号是否正确" << endl;
-    cout << "           2.请确认fastboot是否正常" << endl;
-    cout << "           3.解压后重新运行本程序，" << endl;
-    cout << "             若还不成功，请联系作者" << endl;
-    cout << endl;
-    cout << "           " << toolAuth << "感谢您使用本工具" << endl;
-    cout << endl;
-    cout << "            （按任意键退出程序）" << endl;
-    cout << "***********************************************" << endl;
-    cin.get();
-    return;
-}
-void FLASHING()
-{
-    system("cls");
-    cout << "  " << deviceName << " 一键刷入Boot工具" << endl;
-    cout << "                                --By " << toolAuth << endl;
-    cout << "***********************************************" << endl;
-    cout << "          正在进行刷入Boot操作" << endl
-         << endl;
-    cout << "      （如果长时间停留在此界面，请检查：）" << endl;
-    cout << endl;
-    cout << "      【1.USB线是否正确连接】" << endl;
-    cout << "      【2.电脑驱动是否正确安装并识别】" << endl;
-    cout << "      【3.手机是否进入fastboot模式】" << endl;
-    cout << endl;
-    cout << "             （并重启该工具）" << endl;
-    cout << "***********************************************" << endl;
-    int result = system(("fastboot flash boot " + bootImg).c_str());
-    if (result == 0)
-    {
-        FLASH_OVER();
-    }
-    else
-    {
-        FLASH_FAILED();
-    }
-    return;
-}
-void REBOOT_BOOTLOADER()
-{
-    cin.get();
-    cout << "***********************************************" << endl;
-    cout << endl;
-    cout << "             手机重启中..." << endl;
-    cout << endl;
-    cout << "***********************************************" << endl;
-    cout << "   （若长时间停留在此界面，请重启该工具）" << endl;
-    int result = system("adb reboot bootloader");
-    if (result == 0)
-    {
-        FLASHING();
-    }
-    return;
-}
-void IN_SYSTEM()
-{
-    system("cls");
-    cout << endl;
-    cout << "  " << deviceName << " 一键刷入Boot工具" << endl;
-    cout << "                                --By " << toolAuth << endl;
-    cout << "***********************************************" << endl;
-    cout << "          请您将手机正确连接到电脑：" << endl;
-    cout << endl;
-    cout << "            请确保：" << endl;
-    cout << "       【1.手机bootloader未锁】" << endl;
-    cout << "       【2.手机处于开机状态】" << endl;
-    cout << "       【3.手机开启USB调试】" << endl;
-    cout << "       【4.电脑上已经正确安装驱动】" << endl;
-    cout << "       【5.手机提示USB调试授权时勾选始终点击授权】" << endl;
-    cout << endl;
-    cout << "***********************************************" << endl;
-    cin.get();
-    cout << "正在检查设备是否正常连接..." << endl;
-    cout << endl;
-    cout << "   （若长时间停留在此界面，请检查上述几项）" << endl;
-    cout << "***********************************************" << endl;
-    int result = system("adb devices");
-    cout << "出现手机序列号后，按回车键重启到Bootloader模式..." << endl;
-    if (result == 0)
-    {
-        REBOOT_BOOTLOADER();
-    }
-    else
-    {
-        IN_SYSTEM();
-    }
-}
-void FASTBOOT_MODE()
-{
-    system("cls");
-    cout << endl;
-    cout << "  " << deviceName << " 一键刷入Boot工具" << endl;
-    cout << "                                --By " << toolAuth << endl;
-    cout << "***********************************************" << endl;
-    cout << "          请您将手机正确连接到电脑：" << endl;
-    cout << endl;
-    cout << "          请确保：" << endl;
-    cout << "        【1.手机bootloader未锁】" << endl;
-    cout << "        【2.手机处于fastboot模式】" << endl;
-    cout << "        【3.电脑上已经正确安装驱动】" << endl;
-    cout << endl;
-    cout << "            （按下任意键继续）" << endl;
-    cout << "***********************************************" << endl;
-    cin.get();
-    FLASHING();
-    return;
-}
-void OTHERS()
-{
-    cout << endl;
-    cout << "  " << deviceName << " 一键刷入Boot工具" << endl;
-    cout << "                                --By " << toolAuth << endl;
-    cout << "***********************************************" << endl;
-    cout << "             请先将手机处于" << endl;
-    cout << endl;
-    cout << "               【开机状态】" << endl;
-    cout << "                  或者" << endl;
-    cout << "             【fastboot模式】" << endl;
-    cout << endl;
-    cout << "          (无操作则6秒后自动返回)" << endl;
-    cout << "***********************************************" << endl;
-}
-void INSTALL_APK()
-{
-    system("cls");
-    cout << endl;
-    cout << "  " << deviceName << " 一键刷入Boot工具" << endl;
-    cout << "                                --By " << toolAuth << endl;
-    cout << "***********************************************" << endl;
-    cout << "          请您将手机正确连接到电脑：" << endl;
-    cout << endl;
-    cout << "          请确保：" << endl;
-    cout << "        【1.手机开启了USB调试】" << endl;
-    cout << "        【2.电脑已安装ADB驱动】" << endl;
-    cout << "        【3.手机上已授权此电脑的调试权限】" << endl;
-    cout << "          若出现授权，请手动授权" << endl;
-    cout << endl;
-    cout << "            （按下任意键继续）" << endl;
-    cout << "***********************************************" << endl;
-    cin.get();
-    int adbDevicesResult = system("adb devices");  
-    if (adbDevicesResult != 0) {  
-        std::cerr << "ADB设备检查失败，请检查连接！" << std::endl;  
-        return;  
-    }   
-    std::string installCommand = "adb install " + apkFile;  
-    int installResult = system(installCommand.c_str());  
-    if (installResult != 0) {  
-        std::cerr << "APK安装失败，请检查文件路径或ADB连接！" << std::endl;  
-    } else {  
-        std::cout << "APK安装成功！" << std::endl;  
-    }
-    this_thread::sleep_for(chrono::seconds(2));
-	system("cls");  
-    return MENU();  
-}  
+
 void MENU()
 {
     cout << endl;
-    cout << "  " << deviceName << " 一键刷入Boot工具" << endl;
+    cout << "   " << deviceName << " 一键刷入Boot工具" << endl;
     cout << "                                --By " << toolAuth << endl;
     cout << "***********************************************" << endl;
     cout << "	请选择功能：" << endl;
@@ -297,3 +116,244 @@ void MENU()
     cout << "******************************" << endl;
 }
 
+void FLASH_OVER()
+{
+    system("cls");
+    cout << "   " << deviceName << " 一键刷入Boot工具" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "             刷写Boot完成" << endl;
+    cout << endl;
+    cout << "            手机将重启进入系统" << endl;
+    cout << endl;
+    cout << "           " << toolAuth << "感谢您使用本工具" << endl;
+    cout << "***********************************************" << endl;
+    cout << endl;
+    cout << "           （按任意键关闭此窗口）" << endl;
+    cout << endl;
+    system("fastboot reboot");
+    cin.get();
+    return;
+}
+
+void FLASH_FAILED()
+{
+    system("cls");
+    cout << "   " << deviceName << " 一键刷入Boot工具" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "                   刷入失败！" << endl;
+    cout << endl;
+    cout << "           1.请检查手机型号是否正确" << endl;
+    cout << "           2.请确认fastboot是否正常" << endl;
+    cout << "           3.解压后重新运行本程序，" << endl;
+    cout << "             若还不成功，请联系作者" << endl;
+    cout << endl;
+    cout << "           " << toolAuth << "感谢您使用本工具" << endl;
+    cout << endl;
+    cout << "            （按任意键退出程序）" << endl;
+    cout << "***********************************************" << endl;
+    cin.get();
+    return;
+}
+
+void FLASHING()
+{
+    system("cls");
+    cout << "   " << deviceName << " 一键刷入Boot工具" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "          正在进行刷入Boot操作" << endl
+         << endl;
+    cout << "      （如果长时间停留在此界面，请检查：）" << endl;
+    cout << endl;
+    cout << "      【1.USB线是否正确连接】" << endl;
+    cout << "      【2.电脑驱动是否正确安装并识别】" << endl;
+    cout << "      【3.手机是否进入fastboot模式】" << endl;
+    cout << endl;
+    cout << "             （并重启该工具）" << endl;
+    cout << "***********************************************" << endl;
+    int result = system(("fastboot flash boot " + bootImg).c_str());
+    if (result == 0)
+    {
+        FLASH_OVER();
+    }
+    else
+    {
+        FLASH_FAILED();
+    }
+    return;
+}
+
+void REBOOT_BOOTLOADER()
+{
+    cout << "***********************************************" << endl;
+    cout << endl;
+    cout << "             手机重启中..." << endl;
+    cout << endl;
+    cout << "***********************************************" << endl;
+    cout << "   （若长时间停留在此界面，请重启该工具）" << endl;
+    int result = system("adb reboot bootloader");
+    if (result == 0)
+    {
+        FLASHING();
+    }
+    return;
+}
+
+void IN_SYSTEM()
+{
+	system("cls");
+    cout << endl;
+    cout << "   " << deviceName << " 一键刷入Boot工具" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "          请您将手机正确连接到电脑：" << endl;
+    cout << endl;
+    cout << "            请确保：" << endl;
+    cout << "       【1.手机bootloader未锁】" << endl;
+    cout << "       【2.手机处于开机状态】" << endl;
+    cout << "       【3.手机开启USB调试】" << endl;
+    cout << "       【4.电脑上已经正确安装驱动】" << endl;
+    cout << "       【5.手机提示USB调试授权时勾选始终点击授权】" << endl;
+    cout << endl;
+    cout << "***********************************************" << endl;
+    cout << endl;
+    cout << "  " << "正在检查设备是否正常连接..." << endl;
+    cout << endl;
+    cout << "   （若长时间停留在此界面，请检查上述几项）" << endl;
+    cout << "***********************************************" << endl;
+    char choice;  
+    bool shouldContinue = true;
+    while (shouldContinue) {  
+        if (CheckADBDevices()) {  
+            std::cout << "ADB设备检查成功，已发现已连接的设备。" << std::endl;
+            std::cout << "设备将在两秒后重启至Bootloader..." << std::endl;
+			this_thread::sleep_for(chrono::seconds(2));   
+            return REBOOT_BOOTLOADER();  
+        } else {  
+            std::cerr << "ADB设备检查失败，请检查连接！" << std::endl;  
+            char choice;  
+            do {  
+                std::cout << "按 r 重新检查，或输入 q 退出: ";  
+                std::cin >> choice;   
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  
+            } while (choice != 'r' && choice != 'R' && choice != 'q' && choice != 'Q');  
+  
+            if (choice == 'r' || choice == 'R') {    
+            } else if (choice == 'q' || choice == 'Q') {   
+                shouldContinue = false;  
+            }  
+        }  
+    }
+}
+
+void FASTBOOT_MODE()
+{
+    system("cls");
+    cout << endl;
+    cout << "   " << deviceName << " 一键刷入Boot工具" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "          请您将手机正确连接到电脑：" << endl;
+    cout << endl;
+    cout << "          请确保：" << endl;
+    cout << "        【1.手机bootloader未锁】" << endl;
+    cout << "        【2.手机处于fastboot模式】" << endl;
+    cout << "        【3.电脑上已经正确安装驱动】" << endl;
+    cout << endl;
+    cout << "            （按下任意键继续）" << endl;
+    cout << "***********************************************" << endl;
+    cin.get();
+    FLASHING();
+    return;
+}
+
+void OTHERS()
+{
+    cout << endl;
+    cout << "   " << deviceName << " 一键刷入Boot工具" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "             请先将手机处于" << endl;
+    cout << endl;
+    cout << "               【开机状态】" << endl;
+    cout << "                  或者" << endl;
+    cout << "             【fastboot模式】" << endl;
+    cout << endl;
+    cout << "          (无操作则6秒后自动返回)" << endl;
+    cout << "***********************************************" << endl;
+}
+
+void INSTALL_APK()
+{
+    system("cls");
+    cout << endl;
+    cout << "   " << deviceName << " 一键刷入Boot工具" << endl;
+    cout << "                                --By " << toolAuth << endl;
+    cout << "***********************************************" << endl;
+    cout << "          请您将手机正确连接到电脑：" << endl;
+    cout << endl;
+    cout << "          请确保：" << endl;
+    cout << "        【1.手机开启了USB调试】" << endl;
+    cout << "        【2.电脑已安装ADB驱动】" << endl;
+    cout << "        【3.手机上已授权此电脑的调试权限】" << endl;
+    cout << "          若出现授权，请手动授权" << endl;
+    cout << endl;
+    cout << "            （按下任意键继续）" << endl;
+    cout << "***********************************************" << endl;
+    cin.get();
+    int adbDevicesResult = system("adb devices");  
+    if (adbDevicesResult != 0) {  
+        std::cerr << "ADB设备检查失败，请检查连接！" << std::endl;  
+        return;  
+    }   
+    std::string installCommand = "adb install " + apkFile;  
+    int installResult = system(installCommand.c_str());  
+    if (installResult != 0) {  
+        std::cerr << "APK安装失败，请检查文件路径或ADB连接！" << std::endl;  
+    } else {  
+        std::cout << "APK安装成功！" << std::endl;  
+    }
+    this_thread::sleep_for(chrono::seconds(2));
+	system("cls");  
+    return MENU();  
+}  
+bool CheckADBDevices() {  
+    std::string adbOutput = "";  
+    FILE* pipe = popen("adb devices", "r");  
+    if (!pipe) {  
+        std::cerr << "Failed to execute adb devices" << std::endl;  
+        return false;  
+    }  
+  
+    char buffer[128];  
+    while (fgets(buffer, sizeof(buffer), pipe)) {  
+        adbOutput += buffer;  
+    }  
+    pclose(pipe);  
+  
+    // 跳过列表标题行  
+    std::istringstream iss(adbOutput);  
+    std::string line;  
+    std::getline(iss, line); // 读取并丢弃列表标题行，例如 "List of devices attached"  
+  
+    // 检查后续行中是否包含 "device"  
+    bool foundDevice = false;  
+    while (std::getline(iss, line)) {  
+        if (line.find("device") != std::string::npos) {  
+            foundDevice = true;  
+            break;  
+        }  
+        // 也可以检查是否包含 "offline" 或其他不需要的状态  
+    }  
+  
+    // 如果adbOutput中没有设备信息（可能只有标题行和空行），则视为没有设备  
+    if (adbOutput.find("device") == std::string::npos &&  
+        adbOutput.find("offline") == std::string::npos) {  
+        // 这里可以添加额外的逻辑来处理只有标题行和空行的情况  
+        foundDevice = false;  
+    }  
+  
+    return foundDevice;  
+} 
