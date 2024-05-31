@@ -3,6 +3,7 @@
 #include <thread>
 #include <chrono>
 #include <sstream>
+#include <windows.h>
 
 using namespace std;
 int s;
@@ -73,34 +74,34 @@ void MENU()
         {
         case 1:
             cout << "您选择了开机状态，现在执行重启至Bootloader操作.." << endl;
-            this_thread::sleep_for(chrono::seconds(2));
+            Sleep(2);
             IN_SYSTEM();
             return;
         case 2:
             cout << "您选择了fastboot模式，现在执行刷入操作..." << endl;
-            this_thread::sleep_for(chrono::seconds(2));
+            Sleep(2);
             system("cls");
             FASTBOOT_MODE();
             return;
         case 3:
             cout << "您选择了安装KernelSU应用，现在执行安装操作..." << endl;
-            this_thread::sleep_for(chrono::seconds(2));
+            Sleep(2);
             system("cls");
             INSTALL_APK(); 
             return;
         case 4:
             cout << "您选择了其他状态，请将手机切换到开机状态或fastboot模式。" << endl;
-            this_thread::sleep_for(chrono::seconds(1));
+            Sleep(1);
             system("cls");
-            this_thread::sleep_for(chrono::seconds(1));
+            Sleep(1);
             OTHERS();
-            this_thread::sleep_for(chrono::seconds(6));
+            Sleep(6);
             system("cls");
             MENU();
             return;
         default:
             cout << "无效的选择，请重新选择。" << endl;
-            this_thread::sleep_for(chrono::seconds(1));
+            Sleep(1);
             system("cls");
             MENU();
             return;
@@ -229,7 +230,7 @@ void IN_SYSTEM()
         if (CheckADBDevices()) {  
             std::cout << "ADB设备检查成功，已发现已连接的设备。" << std::endl;
             std::cout << "设备将在两秒后重启至Bootloader..." << std::endl;
-			this_thread::sleep_for(chrono::seconds(2));   
+			Sleep(2); 
             return REBOOT_BOOTLOADER();  
         } else {  
             std::cerr << "ADB设备检查失败，请检查连接！" << std::endl;  
@@ -315,10 +316,11 @@ void INSTALL_APK()
     } else {  
         std::cout << "APK安装成功！" << std::endl;  
     }
-    this_thread::sleep_for(chrono::seconds(2));
+    Sleep(2);
 	system("cls");  
     return MENU();  
-}  
+} 
+ 
 bool CheckADBDevices() {  
     std::string adbOutput = "";  
     FILE* pipe = popen("adb devices", "r");  
@@ -326,25 +328,24 @@ bool CheckADBDevices() {
         std::cerr << "Failed to execute adb devices" << std::endl;  
         return false;  
     }  
-  
     char buffer[128];  
     while (fgets(buffer, sizeof(buffer), pipe)) {  
         adbOutput += buffer;  
     }  
-    pclose(pipe);   
+    pclose(pipe);  
     std::istringstream iss(adbOutput);  
     std::string line;  
-    std::getline(iss, line);  
-    bool foundDevice = false;  
+    std::getline(iss, line);
+	bool foundDevice = false;  
     while (std::getline(iss, line)) {  
         if (line.find("device") != std::string::npos) {  
             foundDevice = true;  
             break;  
         }  
-    }  
+    }      
     if (adbOutput.find("device") == std::string::npos &&  
-        adbOutput.find("offline") == std::string::npos) { 
+        adbOutput.find("offline") == std::string::npos) {   
         foundDevice = false;  
-    }  
+    }    
     return foundDevice;  
 } 
