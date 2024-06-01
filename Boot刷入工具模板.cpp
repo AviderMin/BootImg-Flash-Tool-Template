@@ -20,15 +20,14 @@ string Group = "749222815";
 
 void MENU();
 void INF();
-void FLASH_OVER();
-void FLASH_FAILED();
-void FLASHING();
-void REBOOT_BOOTLOADER();
 void IN_SYSTEM();
+bool CheckADBDevice();
 void FASTBOOT_MODE();
 void INSTALL_APK();
-bool CheckADBDevice();
-
+void REBOOT_BOOTLOADER();
+void FLASHING();
+void FLASH_OVER();
+void FLASH_FAILED();
 
 int main() {
     system("color 3f");
